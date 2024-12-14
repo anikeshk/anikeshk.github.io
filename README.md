@@ -1,13 +1,10 @@
-# Aria Template
+# Portfolio
 
-This is a personal blog, portfolio, or blog template created for [Astro](https://astro.build).
+Welcome to my personal portolio and blog!
 
-Astro port of [aria](https://github.com/static-templates/aria).
+---
 
-![Aria Template Cover Photo](https://github.com/ccbikai/astro-aria/blob/main/public/assets/images/cover.png?raw=true)
+**Credits:**
 
-You can install this theme with the [Astro](https://astro.build) command like so:
-
-```js
-npm create astro@latest -- --template ccbikai/astro-aria
-```
+1. [Kai (@ccbikai) for the template](https://github.com/ccbikai/astro-aria)
+2. [Abhinay Thakur (@thisisabhinay) for inspiration](https://www.abhinaythakur.com/)
