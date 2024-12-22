@@ -2,8 +2,12 @@
 layout: ../../layouts/post.astro
 title: Breaking Changes 🤝 Breaking Projects
 description: How "breaking changes" in dependencies or third-party modules can break your projects and what you can do to prevent this!
-dateFormatted: Apr 22nd, 2022
+dateFormatted: Apr 22nd, 2024
 ---
+
+![image.png](../../../public/assets/images/post/breaking-changes-breaking-projects/title.avif)
+
+*Photo by Julia Joppien on Unsplash*
 
 Any codebase, from a small pet project to a large enterprise grade application, has some reliance on **third party dependencies or modules**. This could be to easily allow read/write operations on a database (like [elasticsearch](https://www.npmjs.com/package/@elastic/elasticsearch)), making operations on data structures easier (like [lodash](https://www.npmjs.com/package/lodash)), or to enable extensive testing capability (like [mocha](https://www.npmjs.com/package/mocha)). This lifts a lot of the heavy work one would need to do if they would have to natively build these functionalities themselves. But the one drawback of this is you are are reliant on the **maintainer** of the dependency to preserve the library and ensure compatibility as the core underlying language grows. I hope the lessons I learnt while working on a Node.js + dependency uplift at my company will be useful in your projects.
 
@@ -15,7 +19,7 @@ The first point is very obvious but has to be said. When a dependency is updated
 
 Example of release notes for [mocha](https://github.com/mochajs/mocha/blob/master/CHANGELOG.md) which contains different types of changes from "Breaking Changes" to "Bug Fixes":
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1650108955954/TJobO85h8.png align="left")
+![image.png](../../../public/assets/images/post/breaking-changes-breaking-projects/1.avif)
 
 Innocuous updates like changing the library function name from `eval` to `evaluate` in [mathjs's 6.0.0 update](https://mathjs.org/history.html#20190608-version-600) can be easily missed if one does not carefully look at the release notes.
 
@@ -48,7 +52,7 @@ You can find out how you can run this experiment on Docker by going to [github.c
 
 Let's say you had a webpage which inputted an user's name, age, gender and then the user needed to choose dishes they liked from three choices. You then save these details and choices in an Aerospike database. Another backend service reads this data from Aerospike and does some processing on the user's choices.
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1650206688865/gkaqD4Fw6.png align="left")
+![image.png](../../../public/assets/images/post/breaking-changes-breaking-projects/2.avif)
 
 For this example I have taken the example of an user "Tom" who likes burgers and tacos, and combined both write and read operation into one file for simplicity. Let's use two different versions of the aerospike npm module and check the results.
 
