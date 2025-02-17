@@ -1,0 +1,9 @@
+[
+	{
+		"dates": "16th Feb 2025",
+		"role": "Introducing Cumin",
+		"company": "v1.0.0",
+		"description": "This is the first major of Cumin. It includes the Node.js micorservices, React frontend, and AWS for the infrastructure. https://github.com/anikeshk/cumin",
+		"logo": "/assets/images/releases/major-1.svg"
+  }
+]

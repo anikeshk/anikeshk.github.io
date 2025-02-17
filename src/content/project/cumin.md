@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/post.astro
+layout: ../../layouts/cumin.astro
 title: Cumin
 description: Cumin is a scalable and secure task management tool designed to handle tasks efficiently at any scale.
 dateFormatted: Feb 16th, 2025
@@ -7,19 +7,10 @@ dateFormatted: Feb 16th, 2025
 
 Cumin is a **scalable and secure** task management tool designed to handle tasks efficiently at any scale. Built with a **microservices architecture**, it ensures seamless performance while keeping security at its core.
 
-**🔥 Features at a Glance**
-- **Authentication & Security** – JWT-based authentication for secure user access.
-- **Microservice Architecture** – A robust Node.js backend, orchestrated with NGINX as a reverse proxy.
-- **Real-time Notifications** – Stay updated with WebSockets-powered alerts using Sockets.io .
+Cumin is a **scalable and secure** task management tool designed by leveraging a modern **microservices architecture** with a focus on scalability, security, and real-time collaboration. The backend is built with **Node.js** and operates through NGINX as a reverse proxy, ensuring seamless API management. JWT-based authentication safeguards user data on the **React** frontend, while **WebSockets** enable real-time notifications for a dynamic user experience.
 
-**☁️ AWS-Powered Infrastructure**
-Cumin takes full advantage of AWS services for reliability and performance:
+Cumin also takes full advantage of **AWS services** to ensure high availability and efficiency. **Amazon RDS** (PostgreSQL) and **Amazon DynamoDB** provide a hybrid approach to structured and NoSQL data storage, while **Amazon SQS** facilitates reliable message queueing for asynchronous processes. **AWS Lambda** is used to handle background tasks efficiently, and **Amazon S3** offers scalable storage for user data.
 
-- **Databases** – Amazon RDS (PostgreSQL) & Amazon DynamoDB for structured and NoSQL storage.
-- **Messaging & Queues** – Amazon SQS handles asynchronous task processing like a pro.
-- **Serverless Processing** – AWS Lambda executes background tasks with efficiency.
-- **Storage** – Amazon S3 keeps your files safe and accessible.
+More features coming soon! Stay tuned for updates and checkout the code 👉
 
-More features coming soon! Stay tuned for updates and checkout the code 👉 [github.com/anikeshk/cumin](https://github.com/anikeshk/cumin)
-
-![](../../../public/assets/images/projects/cumin/cumin-architecture-v1.jpg)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anikeshk&repo=cumin&theme=dark)](https://github.com/anikeshk/cumin)
