@@ -54,6 +54,6 @@ The code for the project is available here 👉
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anikeshk&repo=stumble&theme=dark)](https://github.com/anikeshk/stumble)
 
-The complete slides for my class presentation are available below.
+The complete slides from my class presentation are available below.
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTXbB_XgwpsRmA1ZJ5SArx0hxFBbUg205SADYLGItKgmF6oVAoSIXz_RanlTIMomUYxGHkDEcjjbZBD/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
