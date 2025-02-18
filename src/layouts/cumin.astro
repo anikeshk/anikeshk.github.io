@@ -26,10 +26,10 @@ const { frontmatter } = Astro.props;
         {frontmatter.title}
       </h1>
     </div>
-    <div class="w-full max-w-2xl mx-auto px-7">
+    <div class="w-full max-w-2xl mx-auto px-14 py-5">
       {
         experiences.length > 0 && (
-          <div class="pb-10 border-l border-gray-200 last:border-l-0 dark:border-neutral-700">
+          <div class="pb-10 md:border-l border-gray-200 last:border-l-0 dark:border-neutral-700">
             <AboutExperience
               dates={experiences[experiences.length - 1].dates}
               role={experiences[experiences.length - 1].role}
@@ -41,13 +41,13 @@ const { frontmatter } = Astro.props;
         )
       }
     </div>
-    <div class="w-full max-w-2xl mx-auto px-7"></div>
+
     <article
       class="w-full max-w-2xl mx-auto mb-20 prose-sm prose px-7 lg:px-0 lg:prose-lg dark:prose-invert"
     >
       <slot />
     </article>
-    <!-- <div class="w-full max-w-2xl mx-auto px-7">
+    <!-- <div class="w-full max-w-2xl mx-auto px-14">
       {
         experiences.map((experience) => {
           return (
