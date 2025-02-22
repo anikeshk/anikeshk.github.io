@@ -12,3 +12,10 @@ Cumin also takes full advantage of **AWS services** to ensure high availability 
 More features coming soon! Stay tuned for updates and checkout the code 👉
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anikeshk&repo=cumin&theme=dark)](https://github.com/anikeshk/cumin)
+
+---
+
+**Related Articles**
+
+<a href="https://anikeshk.com/post/cumin-5-design-patterns">![image.png](../../../public/assets/images/projects/cumin/link-top5.png)</a>
+
