@@ -1,16 +1,16 @@
 [
 	{
-		"dates": "Sept 2023 · Present",
+		"dates": "Sept 2023 · May 2025",
 		"role": "MS in Computer Science",
 		"company": "Northeastern University",
-		"description": "Expected graduation in May 2025 · GLI Emerging Graduate Leader · TA @ CS 4300",
+		"description": "Laurel and Scroll 100 · GLI Emerging Graduate Leader · TA @ IS 4300 and CS 4530",
 		"logo": "/assets/images/experiences/nu.png"
 	},
 	{
 		"dates": "Sept 2022 · July 2023",
 		"role": "Member of Technical Staff",
 		"company": "Lineaje",
-		"description": "Lead backend developer for SBOM360 · Supply Chain Secuity · TypeScript · Node.js · MongoDB · AWS",
+		"description": "Lead backend developer for SBOM360 · Supply Chain Secuity · AppSec · Node.js · AWS",
 		"logo": "/assets/images/experiences/lineaje.png"
 	},
 	{
