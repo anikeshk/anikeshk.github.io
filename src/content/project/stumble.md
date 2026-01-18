@@ -2,7 +2,7 @@
 layout: ../../layouts/post.astro
 title: Stumble
 description: Stumble is a event discovery and ticket booking Android app for Northeastern University students.
-dateFormatted: 1st Jan, 2025
+dateFormatted: Jan 1st, 2025
 ---
 
 Stumble is an Android app designed for event discovery and ticket booking, tailored specifically for Northeastern University students. This project was developed as part of my coursework in Fall 2024, integrating concepts from two courses:
