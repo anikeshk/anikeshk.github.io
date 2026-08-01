@@ -1,58 +1,65 @@
 ---
-import Footer from "../components/footer.astro";
-import Header from "../components/header.astro";
-import SquareLines from "../components/square-lines.astro";
-const { title } = Astro.props;
+import "../styles/main.css";
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="author" content="Anikesh G Kamath" />
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
 
-    <!-- Used to add dark mode right away, adding here prevents any flicker -->
-    <script is:inline>
-      if (typeof Storage !== "undefined") {
-        if (
-          localStorage.getItem("dark_mode") &&
-          localStorage.getItem("dark_mode") == "true"
-        ) {
-          document.documentElement.classList.add("dark");
-        }
-      }
-    </script>
-    <!-- Google tag (gtag.js) -->
-    <script
-      is:inline
-      type="text/partytown"
-      src="https://www.googletagmanager.com/gtag/js?id=G-7KEBYLFP5L"></script>
-    <script is:inline type="text/partytown">
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+		<title>{title}</title>
 
-      gtag("config", "G-7KEBYLFP5L");
-    </script>
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta name="twitter:card" content="summary" />
 
-    <style>
-      .prose img {
-        border-radius: 20px;
-      }
-    </style>
-    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.png" />
-    <script src="../assets/css/main.css"></script>
-    <Fragment set:html={import.meta.env.HEADER_INJECT} />
-  </head>
-  <body class="antialiased bg-white dark:bg-neutral-950">
-    <SquareLines />
-    <Header />
-    <slot />
-    <Footer />
-    <script src="../assets/js/main.js"></script>
-    <Fragment set:html={import.meta.env.FOOTER_INJECT} />
-  </body>
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+		/>
+
+		<!-- Runs before first paint so a stored dark preference never flashes white. -->
+		<script is:inline>
+			const storedTheme = localStorage.getItem("theme");
+			if (storedTheme === "dark" || storedTheme === "light") {
+				document.documentElement.dataset.theme = storedTheme;
+			}
+		</script>
+
+		<!-- Google tag (gtag.js) -->
+		<script
+			is:inline
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-7KEBYLFP5L"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+			gtag("config", "G-7KEBYLFP5L");
+		</script>
+	</head>
+
+	<body class="min-h-screen bg-background">
+		<slot />
+	</body>
 </html>

@@ -1,0 +1,42 @@
+# Timeline, newest first. `current: true` on exactly one entry fills its dot.
+- period: Jun 2025 — Present
+  current: true
+  role: Senior Software Engineer
+  org: Lineaje
+  place: Santa Clara, CA
+  note: Backend engineer crafting reliable APIs and agentic AI systems for high-trust software.
+  tags:
+    - Node.js
+    - Agentic AI
+    - AWS
+
+- period: Sep 2023 — May 2025
+  role: MS in Computer Science
+  org: Northeastern University
+  place: Boston, MA
+  note: >-
+    Distributed systems, backend engineering, and cloud-native architecture.
+    Laurel and Scroll 100 · Emerging Graduate Leader · TA for IS 4300 and CS 4530.
+  tags:
+    - Distributed Systems
+    - Teaching
+
+- period: Sep 2022 — Jul 2023
+  role: Member of Technical Staff
+  org: Lineaje
+  place: Bengaluru, IN
+  note: Lead backend developer for SBOM360 — software supply chain security and AppSec at scale.
+  tags:
+    - Node.js
+    - AWS
+    - AppSec
+
+- period: Jun 2019 — Aug 2022
+  role: Software Engineer
+  org: McAfee
+  place: Bengaluru, IN
+  note: Backend developer for Real Protect — production ML services for threat detection.
+  tags:
+    - Node.js
+    - AWS
+    - ML x Security

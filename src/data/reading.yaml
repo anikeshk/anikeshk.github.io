@@ -1,0 +1,16 @@
+# Blogs and articles worth passing on. Newest first.
+#
+# The page shows the first three; anything beyond that goes behind a
+# "Show N more" toggle automatically.
+#
+# To add one, copy this block to the top:
+#
+#   - title: The headline, as written   # leads the entry
+#     source: Author · Publication
+#     url: https://...
+#     note: One line on why it stuck with you.
+
+- title: "Minions: Stripe's one-shot, end-to-end coding agents"
+  source: Alistair Gray · Stripe
+  url: https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents
+  note: Unattended agents shipping over a thousand PRs a week, and the tooling that makes that safe.

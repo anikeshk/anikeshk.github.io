@@ -1,69 +1,21 @@
 ---
-import experiences from "../collections/experiences.json";
-import AboutExperience from "../components/about-experience.astro";
-import PageHeading from "../components/page-heading.astro";
-import Layout from "../layouts/main.astro";
+// About is a section on the single page now. This keeps the old /about URL alive.
+const target = "/#about";
 ---
 
-<Layout title="About Me">
-  <section class="relative z-20 max-w-2xl mx-auto my-12 px-7 lg:px-0">
-    <PageHeading
-      title="About Me"
-      description="I'm Anikesh G Kamath, a backend engineer building API-driven systems and agentic AI workflows that turn complex data into action. I started my career working on traditional machine learning systems, integrating classical models into production APIs and learning what it takes to run ML reliably at scale. To strengthen my systems foundation, I completed a Master's in Computer Science at Northeastern University (May 2025), focusing on distributed systems, backend engineering, and cloud-native architecture. Today, as a IT Systems Analyst at Lineaje, I work at the intersection of backend APIs, large-scale data systems, and agentic AI. I build high-throughput services and workflow-driven automation that combine LLM reasoning with deterministic, production-grade engineering. Alongside my technical work, I've been deeply involved in leadership, mentorship, and teaching at Northeastern, and was honored with the Society of Distinctions and Emerging Graduate Student Leader Award. I'm particularly interested in roles building backend platforms and agentic AI systems that are robust, explainable, and production-ready."
-    />
-    <img
-      src="/assets/images/boston.jpg"
-      class="relative z-30 w-full my-10 rounded-xl"
-    />
-
-    <!-- <h2 class="mb-2 text-2xl font-bold dark:text-neutral-200">Short Bio</h2>
-    <p
-      class="text-sm leading-6 text-gray-600 dark:text-neutral-400 sm:leading-7 lg:leading-8 sm:text-base lg:text-lg"
-    >
-      Experienced Software Engineer (4+ years) pursuing an MS in CS at
-      Northeastern, skilled in Node.js, AWS, and backend development. Strong
-      expertise in API design.
-    </p> -->
-
-    <h2
-      class="mt-5 mb-2 text-2xl font-bold lg:mt-10 sm:mt-6 dark:text-neutral-200"
-    >
-      Experience
-    </h2>
-    <div class="px-5 py-10">
-      {
-        experiences.map((experience) => {
-          return (
-            <div class="pb-10 border-l border-gray-200 last:border-l-0 dark:border-neutral-700">
-              <AboutExperience
-                dates={experience.dates}
-                role={experience.role}
-                company={experience.company}
-                description={experience.description}
-                logo={experience.logo}
-              />
-            </div>
-          );
-        })
-      }
-    </div>
-
-    <h2
-      class="mt-5 mb-2 text-2xl font-bold lg:mt-10 sm:mt-6 dark:text-neutral-200"
-    >
-      Let's Connect
-    </h2>
-    <p
-      class="text-sm leading-6 text-gray-600 dark:text-neutral-400 sm:leading-7 lg:leading-8 sm:text-base lg:text-lg"
-    >
-      To stay in touch <a
-        href="https://www.linkedin.com/in/anikeshk/"
-        target="_blank"
-        class="text-indigo-600 underline">connect with me on LinkedIn</a
-      >, or feel free to send me an <a
-        href="mailto:anikesh.kamath@gmail.com"
-        class="text-indigo-600 underline">email</a
-      > and I'll be sure to get back to you.
-    </p>
-  </section>
-</Layout>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="refresh" content={`0; url=${target}`} />
+		<link rel="canonical" href={new URL(target, Astro.site)} />
+		<meta name="robots" content="noindex" />
+		<title>Redirecting to About — Anikesh G Kamath</title>
+		<script is:inline define:vars={{ target }}>
+			window.location.replace(target);
+		</script>
+	</head>
+	<body>
+		<p>This page has moved. <a href={target}>Continue to About</a>.</p>
+	</body>
+</html>

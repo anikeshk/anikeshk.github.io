@@ -1,0 +1,12 @@
+# "What I work on" — rendered as a two-column list.
+- title: API-first backends
+  note: High-throughput services built to stay fast and predictable.
+
+- title: Cloud-native on AWS
+  note: Systems that scale without surprises or 3 a.m. pages.
+
+- title: Agentic AI pipelines
+  note: LLM reasoning wrapped in deterministic engineering.
+
+- title: Mentorship & DX
+  note: Teaching, reviewing, and making teams faster.

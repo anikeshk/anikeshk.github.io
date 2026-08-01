@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+@theme inline {
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-border: var(--border);
+	--color-ring: var(--ring);
+	--color-brand: var(--brand);
+	--color-brand-soft: var(--brand-soft);
+	--color-brand-tint: var(--brand-tint);
+	/*
+	 * Fraunces, not Instrument Serif: Instrument ships a single 400 weight,
+	 * which is why every heading read as thin. Fraunces is variable 100–900.
+	 */
+	--font-display: "Fraunces", Georgia, serif;
+	--font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+	--font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+/*
+ * Monochrome. Hierarchy comes from weight and contrast, not hue, so
+ * `--brand` is simply the strongest ink rather than a separate colour.
+ * The previous warm/clay palette is archived in ./palettes/warm-clay.css.
+ */
+:root {
+	color-scheme: light;
+	--radius: 0.5rem;
+	--background: oklch(0.995 0 0);
+	--foreground: oklch(0.17 0 0);
+	--card: oklch(0.975 0 0);
+	--primary: oklch(0.17 0 0);
+	--primary-foreground: oklch(0.995 0 0);
+	--muted: oklch(0.95 0 0);
+	--muted-foreground: oklch(0.42 0 0);
+	--accent: oklch(0.86 0 0);
+	--border: oklch(0.87 0 0);
+	--ring: oklch(0.17 0 0);
+	--brand: oklch(0.17 0 0);
+	--brand-soft: oklch(0.7 0 0);
+	--brand-tint: oklch(0.955 0 0);
+	--rule: oklch(0.87 0 0);
+}
+
+/*
+ * Dark is a straight token swap — no `dark:` utilities appear in the markup.
+ * The toggle stamps [data-theme] on <html> and wins over the OS preference.
+ */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		color-scheme: dark;
+		--background: oklch(0.155 0 0);
+		--foreground: oklch(0.97 0 0);
+		--card: oklch(0.205 0 0);
+		--primary: oklch(0.97 0 0);
+		--primary-foreground: oklch(0.155 0 0);
+		--muted: oklch(0.26 0 0);
+		--muted-foreground: oklch(0.75 0 0);
+		--accent: oklch(0.38 0 0);
+		--border: oklch(0.32 0 0);
+		--ring: oklch(0.97 0 0);
+		--brand: oklch(0.97 0 0);
+		--brand-soft: oklch(0.45 0 0);
+		--brand-tint: oklch(0.23 0 0);
+		--rule: oklch(0.3 0 0);
+	}
+}
+
+:root[data-theme="dark"] {
+	color-scheme: dark;
+	--background: oklch(0.155 0 0);
+	--foreground: oklch(0.97 0 0);
+	--card: oklch(0.205 0 0);
+	--primary: oklch(0.97 0 0);
+	--primary-foreground: oklch(0.155 0 0);
+	--muted: oklch(0.26 0 0);
+	--muted-foreground: oklch(0.75 0 0);
+	--accent: oklch(0.38 0 0);
+	--border: oklch(0.32 0 0);
+	--ring: oklch(0.97 0 0);
+	--brand: oklch(0.97 0 0);
+	--brand-soft: oklch(0.45 0 0);
+	--brand-tint: oklch(0.23 0 0);
+	--rule: oklch(0.3 0 0);
+}
+
+@layer base {
+	* {
+		border-color: var(--border);
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		background-color: var(--background);
+		color: var(--foreground);
+		font-family: var(--font-sans);
+		font-weight: 400;
+		-webkit-font-smoothing: antialiased;
+		font-feature-settings: "ss01";
+	}
+
+	::selection {
+		background: var(--accent);
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--foreground);
+		outline-offset: 3px;
+	}
+
+	summary {
+		cursor: pointer;
+		list-style: none;
+	}
+
+	summary::-webkit-details-marker {
+		display: none;
+	}
+
+	details[open] .toggle-closed {
+		display: none;
+	}
+
+	details:not([open]) .toggle-open {
+		display: none;
+	}
+
+	/*
+	 * The toggle shows the theme you would switch *to*. Mirrors the token
+	 * cascade above: OS preference by default, [data-theme] overrides it.
+	 */
+	.icon-sun {
+		display: none;
+	}
+	.icon-moon {
+		display: block;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root:not([data-theme="light"]) .icon-sun {
+			display: block;
+		}
+		:root:not([data-theme="light"]) .icon-moon {
+			display: none;
+		}
+	}
+
+	:root[data-theme="dark"] .icon-sun {
+		display: block;
+	}
+	:root[data-theme="dark"] .icon-moon {
+		display: none;
+	}
+	:root[data-theme="light"] .icon-sun {
+		display: none;
+	}
+	:root[data-theme="light"] .icon-moon {
+		display: block;
+	}
+}
+
+@utility label-eyebrow {
+	font-family: var(--font-mono);
+	font-size: 0.6875rem;
+	font-weight: 500;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--muted-foreground);
+}
+
+@utility label-meta {
+	font-family: var(--font-mono);
+	font-size: 0.6875rem;
+	font-weight: 500;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--muted-foreground);
+}
+
+@utility rule-top {
+	border-top: 1px solid var(--rule);
+}
+
+/*
+ * Experience stepper: a hairline rail with one dot per entry. Rail and dot
+ * are drawn per-item so the line stops cleanly after the last one. The dot
+ * is 0.5625rem wide centred on the rail — `left` values must move together
+ * if the list's padding changes.
+ */
+@utility step-item {
+	position: relative;
+	padding-left: 1.75rem;
+
+	/* The dot. */
+	&::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0.3125rem;
+		width: 0.5625rem;
+		height: 0.5625rem;
+		border-radius: 999px;
+		background: var(--background);
+		border: 1.5px solid var(--border);
+		transition: border-color 0.25s ease;
+	}
+
+	/* The rail, from below this dot to the next one. */
+	&:not(:last-child)::after {
+		content: "";
+		position: absolute;
+		left: calc(0.28125rem - 0.5px);
+		top: 1.125rem;
+		bottom: -0.5rem;
+		width: 1px;
+		background: var(--border);
+	}
+
+	&:hover::before {
+		border-color: var(--foreground);
+	}
+}
+
+@utility step-item-current {
+	&::before {
+		border-color: var(--foreground);
+		background: var(--foreground);
+	}
+}
+
+/* Reverse underline: full width at rest, animates away on hover. */
+@utility link-underline {
+	text-decoration: none;
+	background-image: linear-gradient(currentColor, currentColor);
+	background-size: 100% 1px;
+	background-repeat: no-repeat;
+	background-position: 0 100%;
+	transition: background-size 0.35s ease;
+	&:hover {
+		background-size: 0% 1px;
+	}
+}
+
+@utility rise {
+	animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes rise-in {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}

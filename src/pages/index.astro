@@ -1,80 +1,239 @@
 ---
-import Button from "../components/button.astro";
-import Projects from "../components/home/projects.astro";
-import Separator from "../components/home/separator.astro";
-import Writings from "../components/home/writings.astro";
-import Layout from "../layouts/main.astro";
+import Footer from "../components/footer.astro";
+import Header from "../components/header.astro";
+import Main from "../layouts/main.astro";
+import experienceData from "../data/experience.yaml";
+import focusData from "../data/focus.yaml";
+import readingData from "../data/reading.yaml";
+
+// YAML imports arrive untyped; these shapes mirror the files in src/data/.
+interface Focus {
+	title: string;
+	note: string;
+}
+
+interface Experience {
+	period: string;
+	role: string;
+	org: string;
+	place: string;
+	note: string;
+	tags: string[];
+	current?: boolean;
+}
+
+interface Reading {
+	title: string;
+	source: string;
+	url: string;
+	note: string;
+}
+
+const focus = focusData as Focus[];
+const experience = experienceData as Experience[];
+const reading = readingData as Reading[];
+
+const title = "Anikesh G Kamath — Backend & Agentic AI Engineer";
+const description =
+	"Backend engineer in Santa Clara building API-first systems, cloud-native services on AWS, and agentic AI workflows that are robust and production-ready. Currently Senior Software Engineer at Lineaje.";
+
+// Reading shows three entries up front; the rest sit behind a disclosure.
+const VISIBLE_READING = 3;
+const readingVisible = reading.slice(0, VISIBLE_READING);
+const readingRest = reading.slice(VISIBLE_READING);
 ---
 
-<Layout title="Anikesh">
-  <div
-    class="relative z-20 w-full max-w-4xl mx-auto mt-16 px-7 md:mt-24 lg:mt-32 xl:px-0"
-  >
-    <div class="flex flex-col items-center md:flex-row">
-      <div class="relative w-full md:w-1/2">
-        <h1
-          class="mb-5 text-4xl font-bold leading-tight md:text-4xl lg:text-6xl dark:text-white"
-        >
-          Hello, I'm Anikesh.
-        </h1>
-        <p class="mb-6 text-base text-neutral-600 dark:text-neutral-400">
-          IT Systems Analyst @ Lineaje, MSCS @ Northeastern<br
-            class="hidden lg:block"
-          />Santa Clara, CA
-        </p>
-        <p class="mb-2 font-semibold text-neutral-800 dark:text-neutral-200">
-          I work on:
-        </p>
-        <ul
-          class="py-2 space-y-[3px] text-sm list-disc list-inside text-neutral-500 dark:text-neutral-400"
-        >
-        <li>Designing <strong>API-first backend systems</strong> that are fast and reliable ⚙️</li>
-        <li>Building <strong>cloud-native services on AWS</strong> that scale ☁️</li>
-        <li>Developing <strong>agentic AI pipelines</strong> that reason and take action 🤖</li>
-        <li>Turning complex data into <strong>production-ready systems</strong> 📦</li>
-        <li><strong>Mentoring</strong> engineers and improving developer experience 🚀</li>
-        </ul>
-        <Button
-          text="Connect on LinkedIn"
-          link="https://www.linkedin.com/in/anikeshk/"
-        />
-        <!-- <Button text="Book a meeting" link="https://topmate.io/anikeshk" /> -->
-      </div>
-      <div
-        class="relative justify-end w-full mt-10 flex flex-col md:flex-row md:pl-10 md:w-1/2 md:mt-0 md:translate-y-4 xl:translate-y-0"
-      >
-        <div class="relative z-50 w-full">
-          <div
-            class="absolute bottom-0 z-40 w-16 h-16 -translate-x-6 -translate-y-1/2 lg:top-auto top-0 lg:-translate-y-[330px] rounded-full"
-          >
-            <span
-              class="relative z-20 flex items-center justify-center w-full h-full text-2xl border-8 border-white rounded-full dark:border-neutral-950 bg-neutral-100 dark:bg-neutral-900"
-            >
-              <span
-                class="flex items-center justify-center w-full h-full bg-white border border-dashed rounded-full dark:bg-neutral-950 border-neutral-300 dark:border-neutral-700"
-                >👋</span
-              >
-            </span>
-          </div>
-          <div class="relative z-30 px-10">
-            <img
-              src="/assets/images/profile.png"
-              loading="eager"
-              decoding="auto"
-              class="relative z-30 w-full aspect-[9/16] md:max-w-md mx-auto dark:-translate-y-0.5 mb-0.5"
-            />
-          </div>
-          <div
-            class="absolute bottom-0 right-0 z-20 w-full h-full lg:h-[420px] translate-x-0 -translate-y-px border border-dashed rounded-2xl bg-gradient-to-r dark:from-neutral-950 dark:via-black dark:to-neutral-950 from-white via-neutral-50 to-white border-neutral-300 dark:border-neutral-700"
-          >
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<Main title={title} description={description}>
+	<Header />
 
-  <Separator text="Check out my projects" />
-  <Projects />
-  <Separator text="Some of my posts" />
-  <Writings />
-</Layout>
+	<main class="mx-auto max-w-3xl px-6">
+		<section class="rise py-16 sm:py-24">
+			<p class="label-eyebrow">Santa Clara, California</p>
+			<h1
+				class="mt-5 text-balance font-display text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl"
+			>
+				Anikesh G Kamath
+			</h1>
+
+			<p class="mt-6 max-w-2xl text-pretty text-lg leading-relaxed">
+				Backend engineer building API-driven systems and agentic AI workflows that turn
+				complex data into action.
+			</p>
+			<p class="mt-3 text-[0.9375rem] text-muted-foreground">
+				<span class="font-semibold text-foreground">Senior Software Engineer at Lineaje</span
+				> · MSCS from Northeastern
+			</p>
+
+			<div class="mt-9 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm font-medium">
+				<a href="mailto:anikesh.kamath@gmail.com" class="link-underline">Email</a>
+				<a
+					href="https://www.linkedin.com/in/anikeshk/"
+					target="_blank"
+					rel="noreferrer"
+					class="link-underline text-muted-foreground"
+				>
+					LinkedIn
+				</a>
+				<a
+					href="https://github.com/anikeshk"
+					target="_blank"
+					rel="noreferrer"
+					class="link-underline text-muted-foreground"
+				>
+					GitHub
+				</a>
+			</div>
+		</section>
+
+		<section id="about" class="rule-top py-16">
+			<p class="label-eyebrow">About</p>
+			<div class="mt-6 space-y-5 text-base leading-relaxed text-muted-foreground">
+				<p>
+					I started out on traditional machine learning systems — integrating classical
+					models into production APIs and learning what it takes to run ML reliably at
+					scale. To strengthen the systems side, I finished a Master&apos;s in Computer
+					Science at Northeastern in May 2025, focused on distributed systems, backend
+					engineering, and cloud-native architecture.
+				</p>
+				<p>
+					Today I work at the intersection of backend APIs, large-scale data systems, and
+					agentic AI: high-throughput services and workflow-driven automation that pair
+					LLM reasoning with deterministic, production-grade engineering.
+				</p>
+				<p>
+					Alongside the technical work I&apos;ve spent a lot of time on leadership,
+					mentorship, and teaching at Northeastern, and was honored with the Society of
+					Distinctions and the Emerging Graduate Student Leader Award. I&apos;m drawn to
+					teams building backend platforms and agentic systems that are robust,
+					explainable, and genuinely production-ready.
+				</p>
+			</div>
+		</section>
+
+		<section class="rule-top py-16">
+			<p class="label-eyebrow">What I work on</p>
+			<dl class="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+				{
+					focus.map((item) => (
+						<div class="border-l-2 border-foreground pl-4">
+							<dt class="font-display text-xl font-semibold tracking-tight">
+								{item.title}
+							</dt>
+							<dd class="mt-2 text-[0.9375rem] leading-relaxed text-muted-foreground">
+								{item.note}
+							</dd>
+						</div>
+					))
+				}
+			</dl>
+		</section>
+
+		<section id="work" class="rule-top py-16">
+			<p class="label-eyebrow">Experience</p>
+			<ol class="mt-8 space-y-9">
+				{
+					experience.map((item) => (
+						<li class:list={["step-item", item.current && "step-item-current"]}>
+							<p class="label-meta">{item.period}</p>
+							<h3 class="mt-1.5 font-display text-xl font-semibold leading-tight tracking-tight">
+								{item.role}
+							</h3>
+							<p class="mt-1 text-sm font-semibold">
+								{item.org} <span class="text-muted-foreground">· {item.place}</span>
+							</p>
+							<p class="mt-2 max-w-xl text-[0.9375rem] leading-relaxed text-muted-foreground">
+								{item.note}
+							</p>
+							<p class="mt-2 text-sm text-muted-foreground">{item.tags.join(" · ")}</p>
+						</li>
+					))
+				}
+			</ol>
+		</section>
+
+		<section id="reading" class="rule-top py-16">
+			<p class="label-eyebrow">Reading</p>
+			<p class="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-muted-foreground">
+				Engineering writing worth passing on — blogs and articles I keep coming back to.
+			</p>
+
+			{/* `note` is intentionally not rendered — add it back below `source` if wanted. */}
+			<ul class="mt-8 border-t border-border">
+				{
+					readingVisible.map((item) => (
+						<li class="border-b border-border py-4">
+							<a
+								href={item.url}
+								target="_blank"
+								rel="noreferrer"
+								class="link-underline text-[0.9375rem] font-medium leading-snug"
+							>
+								{item.title}
+							</a>
+							<p class="label-meta mt-1.5">{item.source}</p>
+						</li>
+					))
+				}
+			</ul>
+
+			{
+				readingRest.length > 0 && (
+					<details>
+						<summary class="label-meta mt-6 inline-block border-b border-transparent pb-0.5 transition-colors hover:border-foreground hover:text-foreground">
+							<span class="toggle-closed">Show {readingRest.length} more</span>
+							<span class="toggle-open">Show less</span>
+						</summary>
+
+						<ul class="mt-6 border-t border-border">
+							{readingRest.map((item) => (
+								<li class="border-b border-border py-4">
+									<a
+										href={item.url}
+										target="_blank"
+										rel="noreferrer"
+										class="link-underline text-[0.9375rem] font-medium leading-snug"
+									>
+										{item.title}
+									</a>
+									<p class="label-meta mt-1.5">{item.source}</p>
+								</li>
+							))}
+						</ul>
+					</details>
+				)
+			}
+		</section>
+
+		<section id="contact" class="rule-top py-16">
+			<p class="label-eyebrow">Let&apos;s connect</p>
+			<p
+				class="mt-6 max-w-2xl text-balance font-display text-2xl font-semibold leading-snug tracking-tight sm:text-3xl"
+			>
+				Always happy to talk about backend platforms, agentic systems, or a good distributed
+				systems war story.
+			</p>
+
+			<div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm font-medium">
+				<a href="mailto:anikesh.kamath@gmail.com" class="link-underline">Email</a>
+				<a
+					href="https://www.linkedin.com/in/anikeshk/"
+					target="_blank"
+					rel="noreferrer"
+					class="link-underline text-muted-foreground"
+				>
+					LinkedIn
+				</a>
+				<a
+					href="https://github.com/anikeshk"
+					target="_blank"
+					rel="noreferrer"
+					class="link-underline text-muted-foreground"
+				>
+					GitHub
+				</a>
+			</div>
+		</section>
+	</main>
+
+	<Footer />
+</Main>
