@@ -253,6 +253,26 @@
 	}
 }
 
+/*
+ * Inline prose links. Unlike link-underline (a nav mannerism that retracts on
+ * hover), these inherit the paragraph's colour and sit under a faint rule that
+ * resolves to full ink on hover — the sentence stays one voice at rest.
+ */
+@utility link-prose {
+	color: inherit;
+	text-decoration-line: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+	text-decoration-color: color-mix(in oklab, currentColor 30%, transparent);
+	transition:
+		color 0.25s ease,
+		text-decoration-color 0.25s ease;
+	&:hover {
+		color: var(--foreground);
+		text-decoration-color: currentColor;
+	}
+}
+
 @utility rise {
 	animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
