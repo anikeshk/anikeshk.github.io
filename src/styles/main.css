@@ -240,6 +240,69 @@
 	}
 }
 
+/*
+ * CSS-only tabs (the "How I work" section). No JavaScript: a radio group drives
+ * the panels through adjacent-sibling selectors, so markup must stay
+ * `input.tab-input + label.tab-label + .tab-panel` inside a flex container.
+ * Arrow keys move between tabs for free, since it is a real radio group.
+ */
+@utility tab-input {
+	/* Visually hidden but still focusable — the ring is drawn on the label. */
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	pointer-events: none;
+
+	&:checked + .tab-label {
+		color: var(--foreground);
+		border-bottom-color: var(--foreground);
+	}
+
+	&:checked + .tab-label + .tab-panel {
+		display: block;
+	}
+
+	&:focus-visible + .tab-label {
+		outline: 2px solid var(--foreground);
+		outline-offset: 3px;
+	}
+}
+
+/*
+ * Sized like label-meta, not like a heading: the tabs are a control strip
+ * under the section eyebrow, so they must not out-weigh it.
+ */
+@utility tab-label {
+	order: 1;
+	cursor: pointer;
+	padding-bottom: 0.75rem;
+	margin-bottom: -1px;
+	border-bottom: 2px solid transparent;
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	font-weight: 500;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--muted-foreground);
+	transition:
+		color 0.25s ease,
+		border-color 0.25s ease;
+
+	&:hover {
+		color: var(--foreground);
+	}
+}
+
+@utility tab-panel {
+	order: 2;
+	display: none;
+	width: 100%;
+	padding-top: 1.75rem;
+	border-top: 1px solid var(--rule);
+	animation: rise-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* Reverse underline: full width at rest, animates away on hover. */
 @utility link-underline {
 	text-decoration: none;

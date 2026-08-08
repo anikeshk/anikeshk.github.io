@@ -18,7 +18,7 @@ Most changes are data, not markup:
 | --- | --- |
 | [`src/data/reading.yaml`](src/data/reading.yaml) | The Reading list — add a blog at the top |
 | [`src/data/experience.yaml`](src/data/experience.yaml) | The Experience timeline |
-| [`src/data/focus.yaml`](src/data/focus.yaml) | The "What I work on" list |
+| [`src/data/focus.yaml`](src/data/focus.yaml) | The "How I work" What / Why / How tabs |
 
 Prose (hero, About, Contact) lives in [`src/pages/index.astro`](src/pages/index.astro);
 design tokens and the light/dark palettes are in [`src/styles/main.css`](src/styles/main.css).

@@ -7,9 +7,11 @@ import focusData from "../data/focus.yaml";
 import readingData from "../data/reading.yaml";
 
 // YAML imports arrive untyped; these shapes mirror the files in src/data/.
-interface Focus {
-	title: string;
-	note: string;
+interface FocusTab {
+	id: string;
+	label: string;
+	lede: string;
+	items: { title: string; note: string }[];
 }
 
 interface Experience {
@@ -29,7 +31,7 @@ interface Reading {
 	note: string;
 }
 
-const focus = focusData as Focus[];
+const focus = focusData as FocusTab[];
 const experience = experienceData as Experience[];
 const reading = readingData as Reading[];
 
@@ -120,21 +122,51 @@ const readingRest = reading.slice(VISIBLE_READING);
 		</section>
 
 		<section class="rule-top py-16">
-			<p class="label-eyebrow">What I work on</p>
-			<dl class="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+			<p class="label-eyebrow">Approach</p>
+
+			{/*
+				CSS-only tabs: one radio per tab, and each panel is revealed by the
+				`input:checked + label + panel` chain in main.css. The three must stay
+				adjacent siblings in this order — `order` on the flex children is what
+				puts every label on the first row and the open panel below them.
+			*/}
+			<div class="mt-7 flex flex-wrap items-start gap-x-7">
 				{
-					focus.map((item) => (
-						<div class="border-l-2 border-foreground pl-4">
-							<dt class="font-display text-xl font-semibold tracking-tight">
-								{item.title}
-							</dt>
-							<dd class="mt-2 text-[0.9375rem] leading-relaxed text-muted-foreground">
-								{item.note}
-							</dd>
-						</div>
+					focus.map((tab, i) => (
+						<Fragment>
+							<input
+								type="radio"
+								name="focus"
+								id={`focus-${tab.id}`}
+								class="tab-input"
+								checked={i === 0}
+							/>
+							<label class="tab-label" for={`focus-${tab.id}`}>
+								{tab.label}
+							</label>
+							<div class="tab-panel">
+								{/* A quiet caption for the tab — the four entries below
+								are what should carry the eye. */}
+								<p class="max-w-xl text-[0.9375rem] leading-relaxed text-muted-foreground">
+									{tab.lede}
+								</p>
+								<dl class="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+									{tab.items.map((item) => (
+										<div class="border-l-2 border-foreground pl-4">
+											<dt class="font-display text-xl font-semibold tracking-tight">
+												{item.title}
+											</dt>
+											<dd class="mt-2 text-[0.9375rem] leading-relaxed text-muted-foreground">
+												{item.note}
+											</dd>
+										</div>
+									))}
+								</dl>
+							</div>
+						</Fragment>
 					))
 				}
-			</dl>
+			</div>
 		</section>
 
 		<section id="work" class="rule-top py-16">

@@ -1,12 +1,50 @@
-# "What I work on" — rendered as a two-column list.
-- title: API-first backends
-  note: High-throughput services built to stay fast and predictable.
+# The Approach section — rendered as What / Why / How tabs.
+# Each tab holds four entries in a two-column list. The first tab is the
+# default; `id` only has to be unique on the page.
+- id: what
+  label: What
+  lede: The systems I spend my days building.
+  items:
+    - title: API-first backends
+      note: High-throughput services built to stay fast and predictable under load.
 
-- title: Cloud-native on AWS
-  note: Systems that scale without surprises or 3 a.m. pages.
+    - title: Cloud-native on AWS
+      note: Systems that scale without surprises or 3 a.m. pages.
 
-- title: Agentic AI pipelines
-  note: LLM reasoning wrapped in deterministic engineering.
+    - title: Agentic AI pipelines
+      note: LLM reasoning wrapped in deterministic, testable engineering.
 
-- title: Mentorship & DX
-  note: Teaching, reviewing, and making teams faster.
+    - title: Supply chain security
+      note: SBOM and provenance tooling that makes trust in software measurable.
+
+- id: why
+  label: Why
+  lede: What keeps me pointed at this kind of work.
+  items:
+    - title: Trust is the product
+      note: Security tooling only matters if the teams using it believe what it reports.
+
+    - title: Boring beats clever
+      note: Predictable systems let people ship; surprises cost far more than they save.
+
+    - title: AI needs guardrails
+      note: Reasoning is only useful when its output can be verified and reproduced.
+
+    - title: Teams outlast code
+      note: The service I wrote gets rewritten — how a team works keeps compounding.
+
+- id: how
+  label: How
+  lede: The habits behind the work.
+  items:
+    - title: Design at the seams
+      note: Contracts and data flow first; the implementation is the easier half.
+
+    - title: Ship thin, then deepen
+      note: Smallest end-to-end slice into production, then harden it with real traffic.
+
+    - title: Instrument everything
+      note: If I can't see it in a log, a metric, or a trace, I don't consider it done.
+
+    - title: Review as teaching
+      note: Code review is the highest-leverage place to spread context across a team.
