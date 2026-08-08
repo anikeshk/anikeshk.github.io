@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/footer.astro";
 import Header from "../components/header.astro";
+import ReadingItem from "../components/reading-item.astro";
 import Main from "../layouts/main.astro";
 import experienceData from "../data/experience.yaml";
 import focusData from "../data/focus.yaml";
@@ -26,7 +27,9 @@ interface Reading {
 	title: string;
 	source: string;
 	url: string;
-	note: string;
+	tags?: string[];
+	note?: string;
+	highlighted?: boolean;
 }
 
 const focus = focusData as Focus[];
@@ -37,10 +40,8 @@ const title = "Anikesh G Kamath — Backend & Agentic AI Engineer";
 const description =
 	"Backend engineer in Santa Clara building API-first systems, cloud-native services on AWS, and agentic AI workflows that are robust and production-ready. Currently Senior Software Engineer at Lineaje.";
 
-// Reading shows three entries up front; the rest sit behind a disclosure.
-const VISIBLE_READING = 3;
-const readingVisible = reading.slice(0, VISIBLE_READING);
-const readingRest = reading.slice(VISIBLE_READING);
+// The homepage shows the picks; /all-reading/ lists everything, filterable.
+const readingHighlights = reading.filter((item) => item.highlighted);
 ---
 
 <Main title={title} description={description}>
@@ -137,7 +138,7 @@ const readingRest = reading.slice(VISIBLE_READING);
 			</dl>
 		</section>
 
-		<section id="work" class="rule-top py-16">
+		<section id="experience" class="rule-top py-16">
 			<p class="label-eyebrow">Experience</p>
 			<ol class="mt-8 space-y-9">
 				{
@@ -166,51 +167,14 @@ const readingRest = reading.slice(VISIBLE_READING);
 				Engineering writing worth passing on — blogs and articles I keep coming back to.
 			</p>
 
-			{/* `note` is intentionally not rendered — add it back below `source` if wanted. */}
-			<ul class="mt-8 border-t border-border">
-				{
-					readingVisible.map((item) => (
-						<li class="border-b border-border py-4">
-							<a
-								href={item.url}
-								target="_blank"
-								rel="noreferrer"
-								class="link-underline text-[0.9375rem] font-medium leading-snug"
-							>
-								{item.title}
-							</a>
-							<p class="label-meta mt-1.5">{item.source}</p>
-						</li>
-					))
-				}
+			{/* `note` is rendered on /all-reading/ only — here the list stays a scan-list. */}
+			<ul class="mt-6">
+				{readingHighlights.map((item) => <ReadingItem {...item} />)}
 			</ul>
 
-			{
-				readingRest.length > 0 && (
-					<details>
-						<summary class="label-meta mt-6 inline-block border-b border-transparent pb-0.5 transition-colors hover:border-foreground hover:text-foreground">
-							<span class="toggle-closed">Show {readingRest.length} more</span>
-							<span class="toggle-open">Show less</span>
-						</summary>
-
-						<ul class="mt-6 border-t border-border">
-							{readingRest.map((item) => (
-								<li class="border-b border-border py-4">
-									<a
-										href={item.url}
-										target="_blank"
-										rel="noreferrer"
-										class="link-underline text-[0.9375rem] font-medium leading-snug"
-									>
-										{item.title}
-									</a>
-									<p class="label-meta mt-1.5">{item.source}</p>
-								</li>
-							))}
-						</ul>
-					</details>
-				)
-			}
+			<a href="/all-reading/" class="label-meta link-underline mt-8 inline-block">
+				All reading →
+			</a>
 		</section>
 
 		<section id="contact" class="rule-top py-16">

@@ -1,9 +1,12 @@
 ---
+// Root-relative, not bare fragments: `#about` would resolve against
+// /all-reading/ and go nowhere. On the homepage these are still
+// same-document jumps, so smooth scrolling is unaffected.
 const links = [
-	{ label: "About", href: "#about" },
-	{ label: "Work", href: "#work" },
-	{ label: "Reading", href: "#reading" },
-	{ label: "Contact", href: "#contact" },
+	{ label: "About", href: "/#about" },
+	{ label: "Experience", href: "/#experience" },
+	{ label: "Reading", href: "/#reading" },
+	{ label: "Contact", href: "/#contact" },
 ];
 ---
 

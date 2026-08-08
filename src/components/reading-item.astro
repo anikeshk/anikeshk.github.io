@@ -1,0 +1,35 @@
+---
+// One entry in a reading list: title with the publication set inline beside it.
+// Rendered on the homepage (highlighted entries only) and on /all-reading/,
+// where `showNote` is on and `data-tags` feeds the filter.
+interface Props {
+	title: string;
+	source: string;
+	url: string;
+	tags?: string[];
+	note?: string;
+	highlighted?: boolean;
+	showNote?: boolean;
+}
+
+const { title, source, url, tags = [], note, showNote = false } = Astro.props;
+---
+
+{/*
+	No whitespace between </a> and <span>: a collapsed text node would add a
+	second gap on top of ml-2.5. Padding on the <li> rather than space-y on the
+	<ul>, so hiding a row in the filter leaves no stray margin behind.
+*/}
+<li class="py-3" data-reading-item data-tags={tags.join(",")}>
+	<a
+		href={url}
+		target="_blank"
+		rel="noreferrer"
+		class="link-underline text-[0.9375rem] font-medium leading-snug">{title}</a
+	><span class="label-meta ml-2.5 whitespace-nowrap">{source}</span>
+	{
+		showNote && note && (
+			<p class="mt-1.5 max-w-xl text-sm leading-relaxed text-muted-foreground">{note}</p>
+		)
+	}
+</li>

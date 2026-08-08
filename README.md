@@ -16,7 +16,7 @@ Most changes are data, not markup:
 
 | File | What it drives |
 | --- | --- |
-| [`src/data/reading.yaml`](src/data/reading.yaml) | The Reading list — add a blog at the top |
+| [`src/data/reading.yaml`](src/data/reading.yaml) | The Reading list — add a blog at the top. `highlighted: true` surfaces it on the homepage; `tags` drive the filter on `/all-reading/` |
 | [`src/data/experience.yaml`](src/data/experience.yaml) | The Experience timeline |
 | [`src/data/focus.yaml`](src/data/focus.yaml) | The "What I work on" list |
 

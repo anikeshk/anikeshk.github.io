@@ -120,23 +120,6 @@
 		outline-offset: 3px;
 	}
 
-	summary {
-		cursor: pointer;
-		list-style: none;
-	}
-
-	summary::-webkit-details-marker {
-		display: none;
-	}
-
-	details[open] .toggle-closed {
-		display: none;
-	}
-
-	details:not([open]) .toggle-open {
-		display: none;
-	}
-
 	/*
 	 * The toggle shows the theme you would switch *to*. Mirrors the token
 	 * cascade above: OS preference by default, [data-theme] overrides it.
@@ -191,6 +174,47 @@
 
 @utility rule-top {
 	border-top: 1px solid var(--rule);
+}
+
+/*
+ * Tag filter chips on /all-reading/. The pressed state is a full ink fill —
+ * both sides are tokens, so it inverts on its own in dark rather than needing
+ * a `dark:` variant. The focus ring comes from the global :focus-visible.
+ */
+@utility chip {
+	display: inline-flex;
+	align-items: center;
+	font-family: var(--font-mono);
+	font-size: 0.6875rem;
+	font-weight: 500;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	padding: 0.3125rem 0.6875rem;
+	border-radius: 999px;
+	border: 1px solid var(--border);
+	background: transparent;
+	color: var(--muted-foreground);
+	cursor: pointer;
+	transition:
+		color 0.25s ease,
+		border-color 0.25s ease,
+		background-color 0.25s ease;
+
+	&:hover {
+		color: var(--foreground);
+		border-color: var(--foreground);
+	}
+
+	&[aria-pressed="true"] {
+		background: var(--foreground);
+		border-color: var(--foreground);
+		color: var(--background);
+	}
+
+	/* Hover must not undo the fill. */
+	&[aria-pressed="true"]:hover {
+		color: var(--background);
+	}
 }
 
 /*

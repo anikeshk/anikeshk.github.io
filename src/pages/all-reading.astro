@@ -1,0 +1,122 @@
+---
+import Footer from "../components/footer.astro";
+import Header from "../components/header.astro";
+import ReadingItem from "../components/reading-item.astro";
+import Main from "../layouts/main.astro";
+import readingData from "../data/reading.yaml";
+
+// Same shape as the Reading interface in index.astro — YAML imports arrive untyped.
+interface Reading {
+	title: string;
+	source: string;
+	url: string;
+	tags?: string[];
+	note?: string;
+	highlighted?: boolean;
+}
+
+const reading = readingData as Reading[];
+
+// The chip row is the union of every tag in the data, sorted — never hardcoded,
+// so adding a tag in reading.yaml is all it takes to get a new filter.
+const tags = Array.from(new Set(reading.flatMap((item) => item.tags ?? []))).sort();
+
+const title = "Reading — Anikesh G Kamath";
+const description =
+	"Every engineering blog post and article on my reading list — agents, security, data systems, and engineering culture — filterable by topic.";
+---
+
+<Main title={title} description={description}>
+	<Header />
+
+	<main class="mx-auto max-w-3xl px-6">
+		<section class="rise py-16">
+			<a href="/#reading" class="label-eyebrow link-underline inline-block">← Reading</a>
+
+			<h1
+				class="mt-5 text-balance font-display text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl"
+			>
+				All reading
+			</h1>
+
+			<p class="mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
+				Engineering writing worth passing on. Filter by topic — picking more than one
+				widens the list.
+			</p>
+
+			<div
+				id="tag-filter"
+				class="mt-8 flex flex-wrap gap-2"
+				role="group"
+				aria-label="Filter by topic"
+			>
+				<button type="button" class="chip" data-tag="all" aria-pressed="true">All</button>
+				{
+					tags.map((tag) => (
+						<button type="button" class="chip" data-tag={tag} aria-pressed="false">
+							{tag}
+						</button>
+					))
+				}
+			</div>
+
+			{/* Server-rendered truthfully, so this still reads correctly with JavaScript off. */}
+			<p id="reading-count" class="label-meta mt-6" aria-live="polite">
+				Showing {reading.length} of {reading.length}
+			</p>
+
+			<ul id="reading-list" class="mt-2">
+				{reading.map((item) => <ReadingItem {...item} showNote />)}
+			</ul>
+		</section>
+	</main>
+
+	<Footer />
+</Main>
+
+<script>
+	const bar = document.getElementById("tag-filter");
+	const count = document.getElementById("reading-count");
+	const items = Array.from(document.querySelectorAll("[data-reading-item]"));
+
+	// Without JavaScript every entry stays visible and the chips are inert, so
+	// the page degrades to a plain list rather than an empty one.
+	if (bar && count) {
+		// An empty set means "All". Multi-select is OR — an entry shows if it
+		// carries any active tag, so adding a chip only ever widens the list.
+		const active = new Set<string>();
+
+		// aria-pressed is derived here rather than toggled at the click site, so
+		// the buttons can never disagree with the set that drives the list.
+		function paint() {
+			let shown = 0;
+
+			for (const item of items) {
+				const tags = (item.getAttribute("data-tags") || "").split(",").filter(Boolean);
+				const match = active.size === 0 || tags.some((tag) => active.has(tag));
+				item.toggleAttribute("hidden", !match);
+				if (match) shown += 1;
+			}
+
+			for (const chip of bar!.querySelectorAll("[data-tag]")) {
+				const tag = chip.getAttribute("data-tag");
+				const on = tag === "all" ? active.size === 0 : active.has(tag ?? "");
+				chip.setAttribute("aria-pressed", String(on));
+			}
+
+			count!.textContent = `Showing ${shown} of ${items.length}`;
+		}
+
+		bar.addEventListener("click", (event) => {
+			const target = event.target;
+			const chip = target instanceof Element ? target.closest("[data-tag]") : null;
+			if (!chip) return;
+
+			const tag = chip.getAttribute("data-tag");
+			if (tag === "all") active.clear();
+			else if (tag && !active.delete(tag)) active.add(tag);
+
+			paint();
+		});
+	}
+</script>
