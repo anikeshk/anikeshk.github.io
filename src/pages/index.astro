@@ -1,11 +1,11 @@
 ---
 import Footer from "../components/footer.astro";
 import Header from "../components/header.astro";
-import ReadingItem from "../components/reading-item.astro";
+// import ReadingItem from "../components/reading-item.astro";
 import Main from "../layouts/main.astro";
 import experienceData from "../data/experience.yaml";
 import focusData from "../data/focus.yaml";
-import readingData from "../data/reading.yaml";
+// import readingData from "../data/reading.yaml";
 
 // YAML imports arrive untyped; these shapes mirror the files in src/data/.
 interface Focus {
@@ -23,25 +23,25 @@ interface Experience {
 	current?: boolean;
 }
 
-interface Reading {
-	title: string;
-	source: string;
-	url: string;
-	tags?: string[];
-	note?: string;
-	highlighted?: boolean;
-}
+// interface Reading {
+// 	title: string;
+// 	source: string;
+// 	url: string;
+// 	tags?: string[];
+// 	note?: string;
+// 	highlighted?: boolean;
+// }
 
 const focus = focusData as Focus[];
 const experience = experienceData as Experience[];
-const reading = readingData as Reading[];
+// const reading = readingData as Reading[];
 
 const title = "Anikesh G Kamath — Backend & Agentic AI Engineer";
 const description =
 	"Backend engineer in Santa Clara building API-first systems, cloud-native services on AWS, and agentic AI workflows that are robust and production-ready. Currently Senior Software Engineer at Lineaje.";
 
 // The homepage shows the picks; /all-reading/ lists everything, filterable.
-const readingHighlights = reading.filter((item) => item.highlighted);
+// const readingHighlights = reading.filter((item) => item.highlighted);
 ---
 
 <Main title={title} description={description}>
@@ -161,13 +161,14 @@ const readingHighlights = reading.filter((item) => item.highlighted);
 			</ol>
 		</section>
 
+		{/* Reading section parked for now — /all-reading/ is still live.
 		<section id="reading" class="rule-top py-16">
 			<p class="label-eyebrow">Reading</p>
 			<p class="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-muted-foreground">
 				Engineering writing worth passing on — blogs and articles I keep coming back to.
 			</p>
 
-			{/* `note` is rendered on /all-reading/ only — here the list stays a scan-list. */}
+			`note` is rendered on /all-reading/ only — here the list stays a scan-list.
 			<ul class="mt-6">
 				{readingHighlights.map((item) => <ReadingItem {...item} />)}
 			</ul>
@@ -176,6 +177,7 @@ const readingHighlights = reading.filter((item) => item.highlighted);
 				All reading →
 			</a>
 		</section>
+		*/}
 
 		<section id="contact" class="rule-top py-16">
 			<p class="label-eyebrow">Let&apos;s connect</p>
