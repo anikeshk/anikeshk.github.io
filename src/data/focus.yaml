@@ -1,12 +1,12 @@
 # "What I work on" — rendered as a two-column list.
-- title: API-first backends
-  note: High-throughput services built to stay fast and predictable.
+- title: Agentic security automation
+  note: Detection-to-remediation workflows where LLM reasoning is wrapped in deterministic, auditable engineering.
+
+- title: Data platforms at scale
+  note: Event-driven pipelines and OpenSearch-backed datasets spanning 100M+ documents.
 
 - title: Cloud-native on AWS
-  note: Systems that scale without surprises or 3 a.m. pages.
+  note: Services, queues, and CI/CD that scale without surprises or 3 a.m. pages.
 
-- title: Agentic AI pipelines
-  note: LLM reasoning wrapped in deterministic engineering.
-
-- title: Mentorship & DX
-  note: Teaching, reviewing, and making teams faster.
+- title: Engineers as customers
+  note: Forward-deployed work with security teams, building tooling they actually adopt.

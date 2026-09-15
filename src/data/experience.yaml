@@ -4,9 +4,13 @@
   role: Senior Software Engineer
   org: Lineaje
   place: Santa Clara, CA
-  note: Backend engineer crafting reliable APIs and agentic AI systems for high-trust software.
+  note: >-
+    Security automation across source code and OSS dependencies — vulnerability detection,
+    remediation, and an MCP service layer over OpenSearch datasets spanning 100M+ documents.
+    Forward-deployed with enterprise security teams.
   tags:
-    - Node.js
+    - Python
+    - Security Automation
     - Agentic AI
     - AWS
 
@@ -25,18 +29,22 @@
   role: Member of Technical Staff
   org: Lineaje
   place: Bengaluru, IN
-  note: Lead backend developer for SBOM360 — software supply chain security and AppSec at scale.
+  note: >-
+    Lead backend developer for SBOM360 — software supply chain security at scale, from
+    vulnerability aggregation APIs to a Gitleaks-based secret scanning service.
   tags:
-    - Node.js
+    - TypeScript
+    - Supply Chain Security
     - AWS
-    - AppSec
 
 - period: Jun 2019 — Aug 2022
   role: Software Engineer
   org: McAfee
   place: Bengaluru, IN
-  note: Backend developer for Real Protect — production ML services for threat detection.
+  note: >-
+    Backend developer for Real Protect — production ML services for malware detection,
+    with SLA monitoring and k6 performance gates in CI/CD.
   tags:
     - Node.js
-    - AWS
     - ML x Security
+    - SRE
